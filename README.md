@@ -10,47 +10,52 @@ In this case study, I preformed the real-world tasks of a junior data analyst fo
 
 
 ---
-## Background
+## Background and Business context
 
-### About the company
-In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime. Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. One approach that helped make these things possible was the flexibility of its pricing plans: single-ride passes, full-day passes, and annual memberships. Customers who purchase single-ride or full-day passes are referred to as casual riders. Customers who purchase annual memberships are Cyclistic members. 
 
-Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers, Moreno believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a solid opportunity to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.
+### About Cyclistic
+In 2016, Cyclistic launched a highly successful bike-share offering in Chicago. Over the years, the program expanded into a robust infrastructure featuring a fleet of 5,824 geotracked bicycles locked across a network of 692 stations. The system offered users the flexibility to unlock a bike from any station and return it to any other location across the city grid. 
 
-Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends.
+Historically, Cyclistic’s marketing strategy focused on building broad consumer awareness by offering flexible pricing structures:
+* **Casual Riders:** Customers who purchased single-ride or full-day passes.
+* **Cyclistic Members:** Customers who committed to full annual memberships.
 
-### Scenario
+### The Strategic Shift
+While pricing flexibility successfully drove high user acquisition, Cyclistic’s financial analysts concluded that **annual members were significantly more profitable** than casual riders. 
 
-I am a junior data analyst working on the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, the team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, the team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
+Recognizing this financial dynamic, **Lily Moreno (Cyclistic’s Director of Marketing)** determined that maximizing annual memberships was the definitive key to the company's future growth. Instead of executing an expensive marketing campaign targeting entirely new customers, the marketing analytics team identified a major opportunity to convert existing casual riders into annual members. Because casual riders were already familiar with the Cyclistic brand and actively utilized the infrastructure for their mobility needs, they represented a warm, highly convertible audience.
+
+### The Scenario
+As a Junior Data Analyst working on the marketing analyst team, I was tasked with executing an end-to-end data lifecycle analysis to support this strategic pivot. Because Cyclistic executives required highly compelling data insights and professional data visualizations to approve any final marketing recommendations, the project demanded rigorous data cleaning, processing, and visualization standards.
 
 ------------------------
 
 ## Key Phases of the study
 
 ### Ask Phase
-Cyclistic’s finance team has concluded that annual members are much more profitable than casual riders. My manager and the director of marketing, Lily Moreno, believes that **maximizing our annual memberships** is the absolute key to the company's future growth.
-Three questions will guide the future marketing program: 
-1. How do annual members and casual riders use Cyclistic bikes differently?
-2.  Why would casual riders buy Cyclistic annual memberships?
-3.  How can Cyclistic use digital media to influence casual riders to become members?
-  
-   Moreno has assigned me the first question to answer: **How do annual members and casual
-riders use Cyclistic bikes differently?**
+#### 1. Business Objective
+The core objective of this project was to analyze Cyclistic’s historical trip data to uncover the distinct behavioral trends and usage patterns between **casual riders** and **annual members**. By isolating these trends, the marketing team could design a targeted digital media strategy to convert existing casual riders into high-value annual members, ultimately securing formal approval from the Cyclistic Executive Committee.
 
-#### The Business Task
-The core objective of this project was to analyze Cyclistic’s historical trip data to uncover the distinct behavioral trends and usage patterns between **casual riders** and **annual members**.
+#### 2. Primary Business Questions
+Three questions to guide the marketing program:
+* **How did annual members and casual riders use Cyclistic bikes differently?**
+* **Why would casual riders be motivated to purchase a Cyclistic annual membership?**
+* **How could digital media be leveraged to influence their marketing tactics?**
 
-By understanding exactly how these two groups utilize the bike-share network differently, I will design a targeted marketing strategy to convert existing casual riders into annual subscribers. This shift is critical for driving long-term customer lifetime value and fueling company growth. Because the final presentation is for the detail-oriented Cyclistic Executive Team, the final findings and visualizations must be rigorous, highly polished, and visually compelling.
+#### 3. Core Stakeholders
+* **Lily Moreno (Director of Marketing):** Responsible for developing campaigns to promote the bike-share program through print, digital, and social channels.
+* **Cyclistic Marketing Analytics Team:** A team of data analysts responsible for collecting, analyzing, and reporting data to guide marketing strategy.
+* **Cyclistic Executive Committee:** The detail-oriented executive team responsible for approving the final recommended marketing program.
 
 ---
 ### Prepare Phase
-The analysis covers the most recent 12 consecutive months of historical trip records available (May 2025 to April 2026).
+This phase focuses on the data sourcing, structure, and integrity checks required before any code is written. The analysis covers the most recent 12 consecutive months of historical trip records available (May 2025 to April 2026). 
 
-#### Data Properties & Integrity:
+#### 1. Data Structure and Organization:
   
 The data is spread across 12 separate monthly .csv files, combining for a total of **5,697,455** raw rows.
 
-#### The Columns:
+##### The Columns:
 
  Each file contains a flat table layout with the following fields: 
  
@@ -60,10 +65,17 @@ The data is spread across 12 separate monthly .csv files, combining for a total 
  4.  station markers
  5.   whether the user is a "member" or a "casual" rider.
 
-#### Privacy:
+#### 2. ROCCC Assessment (Data Quality Check)
+* **Reliable:** Yes. The dataset contains precise, unmanipulated system logs tracking automated dock locks and GPS triggers.
+* **Original:** Yes. This is primary first-party operational data collected straight from Cyclistic’s physical network.
+* **Comprehensive:** Yes. It accounts for over 5.5 million individual rides with no seasonal gaps.
+* **Current:** Yes. The analysis covers a complete, consecutive 12-month trailing cycle.
+* **Cited:** Yes. Cleanly documented under an official public data sharing license.
+  
+#### 3. Privacy:
 The data is strictly anonymized. It contains zero Personally Identifiable Information (PII)—no names, addresses, or credit cards are attached to the entries.
 
-#### Anomaly Note:
+#### 4. Anomaly Note:
 The data file for January 2026 was wrapped in a zip package labeled 202601, but the internal text file was accidentally labeled 202501-divvy-tripdata.csv. I scanned the internal timestamps to verify that the transactions safely belong to 2026 despite the typo.
 
 ---
