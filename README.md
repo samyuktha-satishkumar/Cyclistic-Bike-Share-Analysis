@@ -4,8 +4,10 @@
 In this case study, I preformed the real-world tasks of a junior data analyst for a fictional bike-share company in Chicago- **Cyclistic**. To answer the core business questions, I followed the steps of the data analysis process: **Ask, Prepare, Process, Analyze, Share, and Act**.
 
 ## Quick Links
-1. **Analysis Tool:** Python via Google Colab Notebook
-2. **Data Source:** [divvy_tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
+1. **Data Source:** [divvy_tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
+2. **Analysis Tool:** Python via [Jupyter Notebook](http://localhost:8889/notebooks/Cyclistic_Analysis.ipynb?)
+3. **Interactive Visualizations:**[Explore my Tableau dashboard](https://public.tableau.com/views/Cyclistic_Data_Analysis_Capstone_Project/Sheet1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
 
 ---
 ## Background
