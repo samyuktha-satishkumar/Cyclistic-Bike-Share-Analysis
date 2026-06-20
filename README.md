@@ -88,8 +88,12 @@ The historical trip logs were split across 12 separate monthly CSV files. Manual
 
 I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
 **Python code :** [Data Combining](./1.%20Data%20Combining.py)
-#### 2. Trip Durations
-Converted the started_at and ended_at time columns from plain text strings into real datetime64 objects so Python can calculate chronological differences. Created a new column called ride_length to compute the total duration of each bike trip in minutes.
+
+#### 2: Transforming Time Fields & Feature Engineering
+The raw timestamp columns (started_at and ended_at) initially loaded as text strings (object data types), which prevented mathematical calculations. Additionally, the dataset lacked clear columns to measure how long each trip lasted or to see which days of the week were busiest.
+
+I converted both timestamp columns into proper datetime64[ns] format using pd.to_datetime(). I then calculated a new column called ride_length by finding the difference between the end and start times in minutes, and extracted a day_of_week column using .dt.day_name() to track trip schedules.
+**Python code :** [Time transformation](
 
 ```python
 # Convert 'started_at' and 'ended_at' columns to datetime objects
