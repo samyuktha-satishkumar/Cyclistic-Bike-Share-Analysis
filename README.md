@@ -81,43 +81,14 @@ The data file for January 2026 was wrapped in a zip package labeled 202601, but 
 ---
 
 ### Process Phase
-Excel cannot open files with more than 1 million rows, so I chose **Python via Jupyter Notebook** to clean, transform, and aggregate the raw data. smoothly.
+In the Process phase. the consolidated dataset is cleaned, transformed, and prepared for analysis.
 
-#### 1. Selective Column Loading & Memory Optimization
-To prevent running out of cloud RAM, I loaded the 12 individual files using glob and usecols to only extract the 7 columns essential to our business task. During ingestion, I immediately downcasted text variables into memory-saving categorical data types.
+#### 1. Combining the Data
+The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
 
-```python
-import pandas as pd
-import glob
-import os
-# get the csv files from google drive
-path = '/content/drive/MyDrive/Cyclistic_Data'
-all_files = glob.glob(os.path.join(path, "*.csv"))
-# Columns we actually need
-columns_to_keep = [
-    'ride_id', 'rideable_type', 'started_at', 'ended_at',
-    'start_station_name', 'end_station_name', 'member_casual'
-]
-optimized_list = []
-print("Starting cloud-optimized file processing...")
-for filename in all_files:
-    print(f"Processing: {os.path.basename(filename)}")
-    df = pd.read_csv(filename, usecols=columns_to_keep)
+I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
+**Python code :** [Data Cleaning](./Data%20Cleaning)
 
-    # Convert text columns to 'category' types to save massive memory space
-    df['member_casual'] = df['member_casual'].astype('category')
-    df['rideable_type'] = df['rideable_type'].astype('category')
-
-    optimized_list.append(df)
-
-# 3. Combine everything into one giant table stacked vertically
-print("\nMerging all files into a master dataset...")
-all_trips = pd.concat(optimized_list, ignore_index=True)
-
-print("\n--- ONLINE MERGE SUCCESSFUL ---")
-print(f"Total Rows Combined: {all_trips.shape[0]:,}")
-print(f"Total Columns Kept: {all_trips.shape[1]}")
-```
 #### 2. Trip Durations
 Converted the started_at and ended_at time columns from plain text strings into real datetime64 objects so Python can calculate chronological differences. Created a new column called ride_length to compute the total duration of each bike trip in minutes.
 
