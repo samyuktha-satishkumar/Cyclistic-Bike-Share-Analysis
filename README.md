@@ -129,29 +129,22 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 
 ---
 
-### Analyze 
-I aggregated the cleaned data to compare how the two user groups behave across different days of the week. The data tells a very clear story of two completely different customer profiles.
+### Analyze and Share
+* With the dataset finalized, I used Python to summarize the data by bike preferences, trip durations, seasonal trends, and locations. This analysis showed a clear difference in how the two groups use the service: **annual members** rely on it for short, routine workweek commutes, while **casual riders** take longer trips for leisure, with usage peaking heavily on weekends and during warmer months.
 
- **Data Aggregation:**  Summarized the clean table to isolate how annual members and casual riders behave over time.
-**Baseline Overview:** Compared overall mean and maximum ride lengths grouped by user type.
+* To make these insights interactive, I saved the summarized data into separate CSV files (`final_summary.csv`, `bike_summary.csv`, `time-summary.csv`, and `station_summary.csv`) and imported them into Tableau. Splitting the data this way kept the files small, allowing me to build a fast interactive dashboard that maps thousands of trip coordinates and displays weekly patterns smoothly without any slowdown.
 
-```python
-import numpy as np
-print("DESCRIPTIVE ANALYSIS")
-# 1. Oveall Comparison: Calculate mean and max ride lengths grouped by user type
-overall_stats = all_trips_clean.groupby('member_casual')['ride_length'].agg(['mean', 'max']).reset_index()
-print("\nOverall Ride Length Statistics (in Minutes):")
-print(overall_stats)
-# 2. Analyze by Day of the Week: Calculate average duration and total number of rides
-weekly_analysis = all_trips_clean.groupby(['member_casual', 'day_of_week']).agg(
-    average_ride_length=('ride_length', 'mean'),
-    number_of_rides=('ride_id', 'count')
-).reset_index()
-# Sort the results chronologically by day of the week (1=Monday to 7=Sunday)
-weekly_analysis = weekly_analysis.sort_values(by=['member_casual', 'day_of_week'])
-print("\nRide Statistics by Day of the Week (1=Monday, 7=Sunday):")
-print(weekly_analysis)
-Chronological Grouping: Grouped data by user type and day of the week (1=Monday to 7=Sunday) to calculate daily ride volume and average duration.
+**Python code :** [Data Analysis]()
+
+#### Data Visualizations & Trends
+To show how annual members and casual riders use Cyclistic differently, let's explore each visualization built from our analysis.
+
+##### 1. Total Rides by Bike Type
+* **Annual Members:** Rely heavily on classic bikes (**1,805,420 rides**) and electric bikes (**1,778,234 rides**) to get from point A to point B efficiently.
+* **Casual Riders:** Show a much more varied choice, taking **939,414 electric bike rides** and **843,267 classic bike rides**. Crucially, they are the **only ones who use docked bikes** (**175,175 rides**), which are often chosen for cargo or family recreational trips.
+
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
 ```
 
 #### Key Finding 1: The Trip Duration Gap
