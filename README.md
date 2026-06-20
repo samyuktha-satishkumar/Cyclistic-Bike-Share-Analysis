@@ -84,52 +84,48 @@ The data file for January 2026 was wrapped in a zip package labeled 202601, but 
 In the Process phase. the consolidated dataset is cleaned, transformed, and prepared for analysis.
 
 #### 1. Combining the Data
-The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
+* The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
 
-I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
+* I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
 **Python code :** [Data Combining](./1.%20Data%20Combining.py)
 
 #### 2: Transforming Time Fields & Feature Engineering
-The raw timestamp columns (started_at and ended_at) initially loaded as text strings (object data types), which prevented mathematical calculations. Additionally, the dataset lacked clear columns to measure how long each trip lasted or to see which days of the week were busiest.
+* The raw timestamp columns (started_at and ended_at) initially loaded as text strings (object data types), which prevented mathematical calculations. Additionally, the dataset lacked clear columns to measure how long each trip lasted or to see which days of the week were busiest.
 
 
-<img src="https://github.com/user-attachments/assets/4fad16ae-b35f-40db-8c17-2f36b3cd75f9" width="45%" />
+<img src="https://github.com/user-attachments/assets/4fad16ae-b35f-40db-8c17-2f36b3cd75f9" width="35%" />
+
+
+* I converted both timestamp columns into proper datetime64[ns] format using pd.to_datetime(). I then calculated a new column called ride_length by finding the difference between the end and start times in minutes, and extracted a day_of_week column using .dt.day_name() to track trip schedules.
+
+<img src="https://github.com/user-attachments/assets/fccf4fd2-6fe1-4b53-a52f-27ea87141487" width="45%" />
 
 
 
 
-I converted both timestamp columns into proper datetime64[ns] format using pd.to_datetime(). I then calculated a new column called ride_length by finding the difference between the end and start times in minutes, and extracted a day_of_week column using .dt.day_name() to track trip schedules.
-
-<img src="https://github.com/user-attachments/assets/77b3ec41-4c42-48ab-b2fa-530dd209199a" width="45%" />
+**Python code :** [Time transformation]()
 
 
-**Python code :** [Time transformation](
+#### 3: Data Exploration & Cleaning
+* Checking missing data revealed **1,215,745 blank entries** for starting station names and IDs, alongside **1,279,863 blank entries** for ending stations.
+<img src="https://github.com/user-attachments/assets/77b3ec41-4c42-48ab-b2fa-530dd209199a" width="35%" />
 
-```python
-# Convert 'started_at' and 'ended_at' columns to datetime objects
-all_trips['started_at'] = pd.to_datetime(all_trips['started_at'])
-all_trips['ended_at'] = pd.to_datetime(all_trips['ended_at'])
-# 1. Calculate ride length in minutes
-all_trips['ride_length'] = (all_trips['ended_at'] - all_trips['started_at']).dt.total_seconds() / 60
-# 2. Extract the day of the week (1=Monday, 2=Tuesday, ..., 7=Sunday)
-all_trips['day_of_week'] = all_trips['started_at'].dt.isocalendar().day
-all_trips[['started_at', 'ended_at', 'ride_length', 'day_of_week']].head()
-```
 
-#### 3. Outlier Removal
-I searched for records where ride_length was less than or equal to zero minutes. I filtered out the errors and stored only clean records in a new table for analysis.
+* Running a statistical summary check (`.describe()`) on the new ride_length column exposed critical data quality issues: a minimum ride duration of **-54.79 minutes**. These negative values represent system errors where a bike's return time was clocked before its departure time. 
 
-```python
-# Find out how many rows have a ride length of 0 or negative minutes
-bad_rows = all_trips[all_trips['ride_length'] <= 0].shape[0]
-print(f"Number of rows with invalid/negative trip durations: {bad_rows:,}")
-# Keep only the rows where ride_length is greater than 0
-all_trips_clean = all_trips[all_trips['ride_length'] > 0].copy()
-print(f"New cleaned row count: {all_trips_clean.shape[0]:,}")
-```
+<img src="https://github.com/user-attachments/assets/176e1cbe-5c57-4299-983d-7ded20b3c742" width="35%" />
+
+* To prevent system errors from skewing the metrics, I created a filtered DataFrame called `clean_df` that only keeps trips lasting **1 minute or longer** (`ride_length >= 1`). This removed **155,945 false starts and system bugs**, dropping the dataset from 5,697,455 raw entries to **5,541,510 clean rows** ready for analysis.
+
+**Python code :** [Data exploration and cleaning]()
+
 
 #### The Result:
-Exactly 29 anomaly rows were caught and deleted, leaving us with a pristine dataset of **5,697,426** rows ready for grouping.
+* Merged 12 monthly data files into a single master dataset of **5,697,455** initial rows.
+* Discovered over **1.2 million missing station names** and an incorrect minimum trip duration of **-54.79 minutes**.
+* Set a clear rule to keep only real trips lasting **1 minute or longer**.
+* Successfully removed **155,945 recording errors, system tests, and accidental false starts**.
+* Finalized the cleaning step with exactly **5,541,510 correct rows** ready for analysis.
 
 ---
 
