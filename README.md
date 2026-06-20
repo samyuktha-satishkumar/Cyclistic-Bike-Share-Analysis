@@ -6,7 +6,7 @@ In this case study, I preformed the real-world tasks of a junior data analyst fo
 ## Quick Links
 1. **Data Source:** [divvy_tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
 2. **Analysis Tool:** Python via [Jupyter Notebook](http://localhost:8889/notebooks/Cyclistic_Analysis.ipynb?)
-3. **Interactive Visualizations:**[Explore my Tableau dashboard](https://public.tableau.com/views/Cyclistic_Data_Analysis_Capstone_Project/Sheet1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+3. **Interactive Visualizations:** [Explore my Tableau dashboard](https://public.tableau.com/views/Cyclistic_Data_Analysis_Capstone_Project/Sheet1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 
 ---
@@ -81,7 +81,7 @@ The data file for January 2026 was wrapped in a zip package labeled 202601, but 
 ---
 
 ### Process Phase
-Because Excel cannot open files with more than 1 million rows, I chose **Python via Google Colab** to clean and process millions of records smoothly.
+Excel cannot open files with more than 1 million rows, so I chose **Python via Jupyter Notebook** to clean, transform, and aggregate the raw data. smoothly.
 
 #### 1. Selective Column Loading & Memory Optimization
 To prevent running out of cloud RAM, I loaded the 12 individual files using glob and usecols to only extract the 7 columns essential to our business task. During ingestion, I immediately downcasted text variables into memory-saving categorical data types.
