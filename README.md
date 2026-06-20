@@ -92,7 +92,17 @@ I used Python's os library to scan the data folder and automatically list all 12
 #### 2: Transforming Time Fields & Feature Engineering
 The raw timestamp columns (started_at and ended_at) initially loaded as text strings (object data types), which prevented mathematical calculations. Additionally, the dataset lacked clear columns to measure how long each trip lasted or to see which days of the week were busiest.
 
+
+<img src="https://github.com/user-attachments/assets/4fad16ae-b35f-40db-8c17-2f36b3cd75f9" width="45%" />
+
+
+
+
 I converted both timestamp columns into proper datetime64[ns] format using pd.to_datetime(). I then calculated a new column called ride_length by finding the difference between the end and start times in minutes, and extracted a day_of_week column using .dt.day_name() to track trip schedules.
+
+<img src="https://github.com/user-attachments/assets/77b3ec41-4c42-48ab-b2fa-530dd209199a" width="45%" />
+
+
 **Python code :** [Time transformation](
 
 ```python
