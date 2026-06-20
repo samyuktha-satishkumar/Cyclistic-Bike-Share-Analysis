@@ -87,8 +87,7 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
 
 I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
-**Python code :** [Data Combining](./Data%20Combining.py)
-
+**Python code :** [Data Combining](./1.%20Data%20Combining.py)
 #### 2. Trip Durations
 Converted the started_at and ended_at time columns from plain text strings into real datetime64 objects so Python can calculate chronological differences. Created a new column called ride_length to compute the total duration of each bike trip in minutes.
 
