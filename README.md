@@ -81,7 +81,7 @@ The data file for January 2026 was wrapped in a zip package labeled 202601, but 
 ---
 
 ### Process Phase
-In the Process phase. the consolidated dataset is cleaned, transformed, and prepared for analysis.
+In the Process phase. the consolidated dataset was cleaned, transformed, and prepared for analysis.
 
 #### 1. Combining the Data
 * The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
