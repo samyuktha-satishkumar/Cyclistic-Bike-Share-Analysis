@@ -104,7 +104,7 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 
 
 
-**Python code :** [Time transformation]()
+**Python code :** [Time transformation](./2.%20Time%20Transformation.py)
 
 
 #### 3: Data Exploration & Cleaning
@@ -118,7 +118,7 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 
 * To prevent system errors from skewing the metrics, I created a filtered DataFrame called `clean_df` that only keeps trips lasting **1 minute or longer** (`ride_length >= 1`). This removed **155,945 false starts and system bugs**, dropping the dataset from 5,697,455 raw entries to **5,541,510 clean rows** ready for analysis.
 
-**Python code :** [Data exploration and cleaning]()
+**Python code :** [Data exploration and cleaning](./3.%20Data%20Exploration%20and%20Cleaning.py)
 
 
 #### The Result:
@@ -135,7 +135,7 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 
 * To make these insights interactive, I saved the summarized data into separate CSV files (`final_summary.csv`, `bike_summary.csv`, `time-summary.csv`, and `station_summary.csv`) and imported them into Tableau. Splitting the data this way kept the files small, allowing me to build a fast interactive dashboard that maps thousands of trip coordinates and displays weekly patterns smoothly without any slowdown.
 
-**Python code :** [Data Analysis]()
+**Python code :** [Data Analysis](./4.%20Data%20Analysis.py)
 
 #### Data Visualization & Insights
 The core question is: How do annual members and casual riders use Cyclistic bikes differently? To find the answer, let's explore how their trip habits compare across bike options, timeframes, and geographic settings.
