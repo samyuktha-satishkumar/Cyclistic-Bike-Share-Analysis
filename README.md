@@ -143,7 +143,7 @@ The core question is: How do annual members and casual riders use Cyclistic bike
 #### 1. Bike Preferences
 Annual members and casual riders are compared first by the categories of bikes they prefer using. Across the entire network, electric bikes are the clear favorite, making up 65.06% of total trips (41.69% member + 23.37% casual). Classic bikes represent the remaining 34.94% (22.98% member + 11.96% casual). Both groups share the exact same preference, proving that electric bikes drive the clear majority of total rides.
 
-<img src="https://github.com/user-attachments/assets/0682eeee-8b34-4d0f-b4cf-f61d23db39ca" width="55%" />
+<img src="https://github.com/user-attachments/assets/0682eeee-8b34-4d0f-b4cf-f61d23db39ca" width="90%" />
 
 #### 2. Time-Based Usage Trends
 ##### Monthly Activity Trends :
@@ -160,7 +160,7 @@ Hourly trip data highlights two clear peak traffic times for annual members. Mem
 
 These patterns show that annual members mostly use Cyclistic bikes for weekday commuting to work or school, while casual riders use the fleet throughout the day for leisure and open-ended travel.
 
-<img src="https://github.com/user-attachments/assets/da6a85b0-7ff2-427d-bb80-e2bd1665309f" width="55%" />
+<img src="https://github.com/user-attachments/assets/da6a85b0-7ff2-427d-bb80-e2bd1665309f" width="90%" />
 
 
 #### 3. Ride Trip Durations
@@ -173,16 +173,29 @@ Both groups take longer trips during warmer months, but annual members maintain 
 ##### By Hour of the Day :
 Annual members keep their trips short and consistent, averaging 11 to 13 minutes regardless of the time of day. Casual riders follow a completely different pattern: their trip times vary heavily, spiking up to nearly 30 minutes late at night (12:00 AM to 3:00 AM) and rising steadily during afternoon leisure hours.
 
-<img src="https://github.com/user-attachments/assets/847e0076-c97a-4827-a315-a8843c2b2ce1" width="55%" />
+<img src="https://github.com/user-attachments/assets/847e0076-c97a-4827-a315-a8843c2b2ce1" width="90%" />
 
 #### 4. Station Locations
 Mapping the start and end locations highlights clear differences in where people travel. Casual riders frequently use stations near parks, museums, beaches, and tourist spots. For example, popular tourist destinations like Navy Pier (32,221 trips) and DuSable Lake Shore Drive are dominated by casual users.
 
 Meanwhile, annual members mostly travel around offices, universities, and major transit stations. Their busiest stations are commuter hubs like Kingsbury St & Kinzie St (23,034 trips) and Canal St & Madison St (22,291 trips).
 
-<img src="https://github.com/user-attachments/assets/ff6ead1c-1f25-43f5-b12e-0d68a1d32930" width="55%" />
+<img src="https://github.com/user-attachments/assets/ff6ead1c-1f25-43f5-b12e-0d68a1d32930" width="90%" />
 
-<img src="https://github.com/user-attachments/assets/ae9d2507-2f14-45df-83fd-a76f282f44c9" width="55%" />
+
+
+<img src="https://github.com/user-attachments/assets/ae9d2507-2f14-45df-83fd-a76f282f44c9" width="90%" />
+
+
+##### Summary:
+
+| Casual Riders | Annual Members |
+| :--- | :--- |
+| Prefer riding throughout the day, shifting heavily to weekends in the spring and summer for leisure and relaxation. | Prefer riding on weekdays during morning and evening commute hours (8:00 AM and 5:00 PM). |
+| Travel nearly twice as long per trip on average, taking fewer but longer, open-ended rides. | Take more frequent but shorter rides, averaging about half the trip length of casual riders. |
+| Start and end their journeys near parks, museums, beaches, and tourist attractions like Navy Pier. | Start and end their trips close to universities, residential neighborhoods, and corporate office areas. |
+
+---
 
 ### Act Phase
 Understanding the clear differences between casual riders and annual members allows to create targeted marketing plans. These strategies aim to encourage casual riders to switch to long-term annual memberships.
@@ -193,6 +206,4 @@ Understanding the clear differences between casual riders and annual members all
 
 * Duration-Based Incentives: Create promotions or discounts tailored around longer trip times. Because casual riders take significantly longer trips on average, showing them how much they would save per minute can clearly prove the financial value of an annual membership.
 
- -----
-
-              ** **THANK YOU** **
+ 
