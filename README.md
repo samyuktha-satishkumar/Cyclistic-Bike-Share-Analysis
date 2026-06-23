@@ -87,6 +87,7 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 * The historical trip logs were split across 12 separate monthly CSV files. Manually opening and merging over 5.6 million rows of data across individual files is slow, tedious, and impossible to do in standard spreadsheet tools like Excel.
 
 * I used Python's os library to scan the data folder and automatically list all 12 files. Then, I built a quick loop to read each file one by one and used pd.concat() to stack them vertically into a single consolidated master table containing all **5,697,455** rows.
+  
 **Python code :** [Data Combining](./1.%20Data%20Combining.py)
 
 #### 2: Transforming Time Fields & Feature Engineering
@@ -136,15 +137,60 @@ In the Process phase. the consolidated dataset is cleaned, transformed, and prep
 
 **Python code :** [Data Analysis]()
 
-#### Data Visualizations & Trends
-To show how annual members and casual riders use Cyclistic differently, let's explore each visualization built from our analysis.
+#### Data Visualization & Insights
+The core question is: How do annual members and casual riders use Cyclistic bikes differently? To find the answer, let's explore how their trip habits compare across bike options, timeframes, and geographic settings.
 
-##### 1. Total Rides by Bike Type
-* **Annual Members:** Rely heavily on classic bikes (**1,805,420 rides**) and electric bikes (**1,778,234 rides**) to get from point A to point B efficiently.
-* **Casual Riders:** Show a much more varied choice, taking **939,414 electric bike rides** and **843,267 classic bike rides**. Crucially, they are the **only ones who use docked bikes** (**175,175 rides**), which are often chosen for cargo or family recreational trips.
+#### 1. Bike Preferences
+Annual members and casual riders are compared first by the categories of bikes they prefer using. Across the entire network, electric bikes are the clear favorite, making up 65.06% of total trips (41.69% member + 23.37% casual). Classic bikes represent the remaining 34.94% (22.98% member + 11.96% casual). Both groups share the exact same preference, proving that electric bikes drive the clear majority of total rides.
 
 <img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
 
+#### 2. Time-Based Usage Trends
+##### Monthly Activity Trends :
+Both casual riders and annual members follow similar seasonal patterns when looking at monthly trip numbers. Rides peak heavily during the summer months from June to August and drop to their lowest counts in December and January. The gap in total ride volume between the two groups shrinks significantly during the peak summer season.
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
+##### Weekly Habits :
+Comparing the days of the week reveals opposite riding habits between the two groups. Casual riders take significantly more trips over the weekend, showing a sharp rise on Saturdays and Sundays. Meanwhile, annual members maintain high trip volumes from Monday through Friday—peaking on Thursdays—and show a steep drop in activity over the weekend.
+  
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
+##### Hourly Peak Patterns :
+Hourly trip data highlights two clear peak traffic times for annual members. Member activity jumps sharply during morning commute hours around 8:00 AM and spikes again in the evening at 5:00 PM. On the other hand, casual trips grow steadily throughout the day until 5:00 PM before dropping consistently after dark.
+
+These patterns show that annual members mostly use Cyclistic bikes for weekday commuting to work or school, while casual riders use the fleet throughout the day for leisure and open-ended travel.
+
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
+
+#### 3. Ride Trip Durations
+##### By Day of the Week :
+Casual riders consistently cycle for nearly double the length of annual members across the entire week. The average ride time for annual members remains short and steady at around 12 minutes every day. In contrast, casual riders show changing habits, with their trip lengths jumping significantly over the weekend to peak at 24 minutes on Saturdays and Sundays.
+
+##### By Month :
+Both groups take longer trips during warmer months, but annual members maintain a steady baseline while casual riders are much more affected by the seasons. Casual riders significantly extend their travel times during the spring and summer, peaking around June at over 25 minutes per trip.
+
+##### By Hour of the Day :
+Annual members keep their trips short and consistent, averaging 11 to 13 minutes regardless of the time of day. Casual riders follow a completely different pattern: their trip times vary heavily, spiking up to nearly 30 minutes late at night (12:00 AM to 3:00 AM) and rising steadily during afternoon leisure hours.
+
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
+#### 4. Station Locations
+Mapping the start and end locations highlights clear differences in where people travel. Casual riders frequently use stations near parks, museums, beaches, and tourist spots. For example, popular tourist destinations like Navy Pier (32,221 trips) and DuSable Lake Shore Drive are dominated by casual users.
+
+Meanwhile, annual members mostly travel around offices, universities, and major transit stations. Their busiest stations are commuter hubs like Kingsbury St & Kinzie St (23,034 trips) and Canal St & Madison St (22,291 trips).
+
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+<img src="https://github.com/user-attachments/assets/your-bike-type-chart-id" width="55%" />
+
+### Act Phase
+Understanding the clear differences between casual riders and annual members allows to create targeted marketing plans. These strategies aim to encourage casual riders to switch to long-term annual memberships.
+
+* Targeted Seasonal Campaigns: Run focused marketing campaigns during the spring and summer months at waterfront tourist locations, public beaches, and popular parks. These are the exact areas where casual rider activity is highest.
+
+* Tailored Membership Tiers: Offer new seasonal subscriptions or weekend-only membership plans. Since casual riders are mostly active on weekends and during warm weather, these options can attract a leisure audience that does not need a full annual pass.
+
+* Duration-Based Incentives: Create promotions or discounts tailored around longer trip times. Because casual riders take significantly longer trips on average, showing them how much they would save per minute can clearly prove the financial value of an annual membership.
 ```
 
 #### Key Finding 1: The Trip Duration Gap
